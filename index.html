@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mes actions</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0ea5e9">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <style>
+    body{margin:0;min-height:100vh;display:grid;place-items:center;
+         font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",sans-serif}
+    .hint{opacity:.65;font-size:.95rem}
+    .box{max-width:28rem;text-align:center;padding:2rem}
+  </style>
+  <script>
+    // ⚙️ REMPLACE ICI PAR TON URL APPS SCRIPT quand elle sera prête
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwLIoqEXc_156juJNszZPRiAH2adBh4NmMxLN1JwdOkeAxaTuH_nklP9DbQODK4GRxq/exec";
+
+    // Enregistre le service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
+
+    // Redirection vers la WebApp (simple et robuste)
+    window.addEventListener('DOMContentLoaded', () => {
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.startsWith('http') && !APPS_SCRIPT_URL.includes('TON_WEBAPP_URL')) {
+        location.replace(APPS_SCRIPT_URL);
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="box">
+    <h1>Mes actions</h1>
+    <p class="hint">Cette coquille PWA redirigera vers votre WebApp Apps Script.</p>
+    <p>Pour activer la redirection, ouvrez <code>index.html</code> et remplacez
+       <code>TON_WEBAPP_URL</code> par l'identifiant de votre déploiement Apps Script.</p>
+    <p class="hint">Vous pouvez déjà tester l'installation (Android/iOS) : menu → Installer / Ajouter à l'écran d'accueil.</p>
+  </div>
+</body>
+</html>
